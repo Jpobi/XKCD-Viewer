@@ -19,13 +19,15 @@ class Adapter() : ListAdapter<Comic, Adapter.ViewHolder>(DiffCallBack) {
         val imageElem: ImageView = view.findViewById(R.id.listLogo)
         val releaseElem: TextView = view.findViewById(R.id.year)
         val idNumElem: TextView = view.findViewById(R.id.idNum)
+        val heartElem: ImageView = view.findViewById(R.id.itemHeart)
+
 
         fun bind (comic: Comic) {
             nombreElem.text=comic.title
             Picasso.get().load(comic.img).into(imageElem)
             releaseElem.text=comic.day+"/"+comic.month+"/"+comic.year
             idNumElem.text=comic.num.toString()
-
+            heartElem.visibility= if (comic.isFav) View.VISIBLE else View.INVISIBLE
             view.setOnClickListener{
                 onItemClickListener(comic)
             }
@@ -42,6 +44,23 @@ class Adapter() : ListAdapter<Comic, Adapter.ViewHolder>(DiffCallBack) {
     override fun onBindViewHolder(holder: Adapter.ViewHolder, position: Int) {
         val quake = getItem(position)
         holder.bind(quake)
+    }
+    fun findPositionById(id: Int): Int {
+        return currentList.indexOfFirst { it.num == id }
+    }
+
+    fun updatePosition(position: Int, newComic: Comic) {
+        if (position != -1 && position < currentList.size) {
+            val updatedList = currentList.toMutableList()
+            updatedList[position] = newComic
+            submitList(updatedList)
+            notifyItemChanged(position)
+        }
+    }
+
+    fun updateComic(newComic: Comic){
+        var pos=findPositionById(newComic.num)
+        updatePosition(pos,newComic)
     }
 
     companion object DiffCallBack : DiffUtil.ItemCallback<Comic>() {

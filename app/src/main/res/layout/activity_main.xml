@@ -35,18 +35,18 @@
                 app:srcCompat="@drawable/lupa" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/mainLogo"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="4"
                 app:srcCompat="@drawable/mainlogo"/>
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="XKCD VIEWER"
+            <ImageView
+                android:id="@+id/favButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/full_heart"
                 android:layout_weight="4"
                 android:layout_marginStart="5dp"
                 tools:layout_editor_absoluteX="137dp"
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Imagen"
+        android:text="Img"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
