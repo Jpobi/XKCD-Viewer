@@ -7,5 +7,7 @@ import retrofit2.http.Path
 interface ApiService {
     @GET(value="{comicId}/info.0.json")
     suspend fun getComic(@Path("comicId") comicId: String): Response<Comic>
+    @GET(value="/info.0.json")
+    suspend fun getLatestComic(): Response<Comic>
 
 }
